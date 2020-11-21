@@ -45,6 +45,7 @@ namespace ApsimReport
                 string sim = s.Attribute("name").ToString().Substring(5);
                 treeView.Nodes.Add(sim.Replace("\"", ""));
             }
+            treeView.SelectedNode = treeView.Nodes[0];
         }
 
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
