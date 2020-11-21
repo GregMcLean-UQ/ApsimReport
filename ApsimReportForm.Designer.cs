@@ -99,6 +99,7 @@
             this.treeView.Name = "treeView";
             this.treeView.Size = new System.Drawing.Size(235, 699);
             this.treeView.TabIndex = 2;
+            this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
             // 
             // chart
             // 

@@ -46,5 +46,15 @@ namespace ApsimReport
             }
         }
 
+        private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            // Open the output files in an apsim file reader.
+            string fileName = e.ToString();
+            string dir = Path.GetDirectoryName  (openFileDialog.FileName);
+            fileName = Path.Combine(dir, e.Node.Text + ".out");
+            ApsimOutputFile outFile = new ApsimOutputFile(fileName);
+
+             
+        }
     }
 }
