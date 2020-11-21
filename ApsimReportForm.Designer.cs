@@ -114,11 +114,11 @@
             series1.ChartArea = "Biomass";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
-            series1.Name = "Biomass";
+            series1.Name = "biomass";
             series2.ChartArea = "Biomass";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series2.Legend = "Legend1";
-            series2.Name = "Yield";
+            series2.Name = "yield";
             this.chart.Series.Add(series1);
             this.chart.Series.Add(series2);
             this.chart.Size = new System.Drawing.Size(1345, 699);

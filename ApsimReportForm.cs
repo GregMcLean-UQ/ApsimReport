@@ -61,9 +61,25 @@ namespace ApsimReport
         private void GraphData()
         {
             // Get the data for each graph and display.
-            chart.Series["Biomass"].Points.Clear();
-            List<double> biomass = outFile.GetData("biomass");
+           
+            List<DateTime> dates = outFile.GetDates();
+            PopulateSeries("biomass", dates);
+            PopulateSeries("yield", dates);
 
+
+
+
+
+        }
+        private void PopulateSeries(String seriesName,List<DateTime> dates)
+        {
+            chart.Series[seriesName].Points.Clear();
+            List<double> biomass = outFile.GetData(seriesName);
+            for (int i = 0; i < biomass.Count; i++)
+            {
+                chart.Series[seriesName].Points.AddXY(dates[i], biomass[i]);
+
+            }
         }
     }
 }
