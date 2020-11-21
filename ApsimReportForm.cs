@@ -66,6 +66,8 @@ namespace ApsimReport
             List<DateTime> dates = outFile.GetDates();
             PopulateSeries("biomass", dates);
             PopulateSeries("yield", dates);
+            PopulateSeries("lai", dates);
+            PopulateSeries("stage", dates);
 
 
 
