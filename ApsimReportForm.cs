@@ -14,6 +14,7 @@ namespace ApsimReport
 {
     public partial class ApsimReportForm : Form
     {
+        ApsimOutputFile outFile;
         public ApsimReportForm()
         {
             InitializeComponent();
@@ -52,9 +53,17 @@ namespace ApsimReport
             string fileName = e.ToString();
             string dir = Path.GetDirectoryName  (openFileDialog.FileName);
             fileName = Path.Combine(dir, e.Node.Text + ".out");
-            ApsimOutputFile outFile = new ApsimOutputFile(fileName);
+             outFile = new ApsimOutputFile(fileName);
 
-             
+
+            GraphData();
+        }
+        private void GraphData()
+        {
+            // Get the data for each graph and display.
+            chart.Series["Biomass"].Points.Clear();
+            List<double> biomass = outFile.GetData("biomass");
+
         }
     }
 }

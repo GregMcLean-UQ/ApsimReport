@@ -32,6 +32,7 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.NewToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -103,17 +104,23 @@
             // 
             // chart
             // 
-            chartArea1.Name = "ChartArea1";
+            chartArea1.Name = "Biomass";
             this.chart.ChartAreas.Add(chartArea1);
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Name = "Legend1";
             this.chart.Legends.Add(legend1);
             this.chart.Location = new System.Drawing.Point(0, 0);
             this.chart.Name = "chart";
-            series1.ChartArea = "ChartArea1";
+            series1.ChartArea = "Biomass";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
-            series1.Name = "Series1";
+            series1.Name = "Biomass";
+            series2.ChartArea = "Biomass";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Yield";
             this.chart.Series.Add(series1);
+            this.chart.Series.Add(series2);
             this.chart.Size = new System.Drawing.Size(1345, 699);
             this.chart.TabIndex = 0;
             this.chart.Text = "chart1";
