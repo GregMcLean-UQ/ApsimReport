@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -25,7 +27,7 @@ namespace ApsimReport
             openFileDialog.FilterIndex = 1;
             Text = "APSIM Report";
             if (openFileDialog.ShowDialog() != DialogResult.OK) return;
-            Text = "APSIM Report - " +  Path.GetFileName( openFileDialog.FileName);
+            Text = "APSIM Report - " + Path.GetFileName(openFileDialog.FileName);
             ListSimulations();
         }
         private void ListSimulations()
@@ -51,10 +53,9 @@ namespace ApsimReport
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             // Open the output files in an apsim file reader.
-            string fileName = e.ToString();
-            string dir = Path.GetDirectoryName  (openFileDialog.FileName);
-            fileName = Path.Combine(dir, e.Node.Text + ".out");
-             outFile = new ApsimOutputFile(fileName);
+            string dir = Path.GetDirectoryName(openFileDialog.FileName);
+            string fileName = Path.Combine(dir, e.Node.Text + ".out");
+            outFile = new ApsimOutputFile(fileName);
 
 
             GraphData();
@@ -62,7 +63,7 @@ namespace ApsimReport
         private void GraphData()
         {
             // Get the data for each graph and display.
-           
+
             List<DateTime> dates = outFile.GetDates();
             PopulateSeries("biomass", dates);
             PopulateSeries("yield", dates);
@@ -74,7 +75,7 @@ namespace ApsimReport
 
 
         }
-        private void PopulateSeries(String seriesName,List<DateTime> dates)
+        private void PopulateSeries(String seriesName, List<DateTime> dates)
         {
             chart.Series[seriesName].Points.Clear();
             List<double> biomass = outFile.GetData(seriesName);

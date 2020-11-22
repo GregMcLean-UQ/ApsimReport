@@ -9,9 +9,9 @@ namespace ApsimReport
     public class ApsimOutputFile
     {
         //Members--------------------------------------------------------------
-        List<DateTime> dates;
+        readonly List<DateTime> dates;
         List<string> variableNames;
-        List<List<double>> data;
+        readonly List<List<double>> data;
 
         public ApsimOutputFile(string fileName)
         {
