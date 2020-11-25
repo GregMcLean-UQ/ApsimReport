@@ -111,7 +111,9 @@
             // chart
             // 
             chartArea1.AlignmentStyle = System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.PlotPosition;
-            chartArea1.AxisX.LabelStyle.Format = "H:mm dd/MM";
+            chartArea1.AxisX.Interval = 2D;
+            chartArea1.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Months;
+            chartArea1.AxisX.LabelStyle.Format = "MM/dd";
             chartArea1.Name = "Biomass";
             chartArea1.Position.Auto = false;
             chartArea1.Position.Height = 32F;

@@ -6,6 +6,47 @@ using System.Linq;
 
 namespace ApsimReport
 {
+    public class DailyDATA
+    {
+        // Read all output files into a matrix.
+
+        // Get required variables from the graphs
+        // Read first file and get a list of column indicies.
+        // FRom that file get dates
+
+        readonly List<DateTime> dates;
+        List<string> serieseNames;
+        List<int> seriesIndicies;
+
+        // Data matrix. file x variable x timeseries value
+        List<List<List<double>>> matrix;
+
+        public DailyDATA(List<string> variables, List<string> fileNames)
+        {
+            GetColumnIndiciesAndDates(fileNames[0]);
+            serieseNames = variables;
+        }
+        private void GetColumnIndiciesAndDates(string fileName)
+        {
+            // Read the file. Get the variables line and get the column index of each variable.
+            string[] lines = File.ReadAllLines(fileName);
+            int lineNo = 0;
+            // Look for Title. Next line is variables
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i].Contains("Title"))
+                {
+                    lineNo = i + 1;
+                    break;
+                }
+            }
+            List<string> variableNames = lines[lineNo].ToLower().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            foreach (string s in serieseNames)
+                seriesIndicies.Add(variableNames.IndexOf(s));
+
+        }
+
+    }
     public class ApsimOutputFile
     {
         //Members--------------------------------------------------------------
@@ -69,7 +110,7 @@ namespace ApsimReport
                 }
                 else if (dateTimeIndx == 2)   // year, doy
                 {
-                    dateTime =   new DateTime(Convert.ToInt32(vals[yearCol]), 1, 1).AddDays(Convert.ToInt32(vals[doyCol]) - 1);
+                    dateTime = new DateTime(Convert.ToInt32(vals[yearCol]), 1, 1).AddDays(Convert.ToInt32(vals[doyCol]) - 1);
                 }
                 if (hourCol != -1) dateTime.AddHours(vals[hourCol]);
 
